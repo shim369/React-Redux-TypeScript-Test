@@ -7,7 +7,6 @@ const Sidebar: React.FC = () => {
       <ul>
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/settings">Settings</Link></li>
-        {/* 他のリンクやコンテンツをここに追加 */}
       </ul>
     </aside>
   );
