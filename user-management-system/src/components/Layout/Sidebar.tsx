@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Sidebar: React.FC = () => {
   return (
-    <aside>
+    <aside className='aside'>
       <ul>
         <li><Link to="/dashboard">Dashboard</Link></li>
         <li><Link to="/settings">Settings</Link></li>

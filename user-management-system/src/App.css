@@ -1,0 +1,19 @@
+.header {
+    padding: 1rem;
+    background: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header a {
+    color: #fff;
+    text-decoration: none;
+    padding: 1rem;
+}
+
+.aside {
+    padding: 2rem;
+}
