@@ -38,4 +38,10 @@ input {
 
 button {
   padding: 1rem;
+  background: #333;
+  color: #fff;
+}
+
+button:hover {
+  opacity: .8;
 }
