@@ -15,7 +15,7 @@ const Header: React.FC = () => {
 
   return (
     <header className='header'>
-      <h1>My App</h1>
+      <h1>React Redux User Management System</h1>
       <nav>
         <Link to="/login">Login</Link>
         <Link to="/register">Register</Link>

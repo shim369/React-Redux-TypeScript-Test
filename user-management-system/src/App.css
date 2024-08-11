@@ -14,6 +14,34 @@
     padding: 1rem;
 }
 
+.container {
+    display: flex;
+    height: 100vh;
+}
+
 .aside {
     padding: 2rem;
+    background: #ddd;
+    width: 200px;
+    height: 100%;
+}
+
+.aside_list_item {
+    margin-bottom: 2rem;
+}
+
+.aside_list_item a {
+    color: #333;
+    padding: 1rem;
+    display: block;
+}
+
+.aside_list_item a:hover {
+    opacity: .8;
+}
+
+.main {
+    flex: 1;
+    background: #ccc;
+    height: 100%;
 }

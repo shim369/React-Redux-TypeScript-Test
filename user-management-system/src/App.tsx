@@ -11,9 +11,9 @@ const App: React.FC = () => {
   return (
     <>
       <Header />
-      <div style={{ display: 'flex' }}>
+      <div className='container'>
         <Sidebar />
-        <main style={{ marginLeft: '200px' }}>
+        <main className='main'>
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
