@@ -33,4 +33,9 @@ h2 {
 
 input {
   margin-right: 1rem;
+  padding: 1rem;
+}
+
+button {
+  padding: 1rem;
 }
