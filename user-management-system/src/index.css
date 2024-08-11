@@ -26,3 +26,11 @@ ul {
 a {
   text-decoration: none;
 }
+
+h2 {
+  margin-bottom: 1rem;
+}
+
+input {
+  margin-right: 1rem;
+}
