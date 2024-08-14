@@ -9,9 +9,12 @@
 }
 
 .header a {
-    color: #fff;
     text-decoration: none;
     padding: 1rem;
+}
+
+.header svg {
+    color: #fff;
 }
 
 .container {
