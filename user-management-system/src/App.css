@@ -53,3 +53,13 @@
 .main h2 {
     color: #fff;
 }
+
+.tbl {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tbl th, .tbl td {
+     border: 1px solid black;
+     padding: 8px;
+}
