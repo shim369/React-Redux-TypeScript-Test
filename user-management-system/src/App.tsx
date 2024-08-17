@@ -1,26 +1,16 @@
-import React from 'react';
-import { Route, Routes } from "react-router-dom";
-import Header from './components/Layout/Header';
-import Sidebar from './components/Layout/Sidebar';
-import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
-import Profile from './components/Auth/Profile';
-import PrivateRoute from './components/Common/PrivateRoute';
-import UserList from './components/Layout/UserList';
+import React from "react";
+import Header from "./components/Layout/Header";
+import Sidebar from "./components/Layout/Sidebar";
+import MyRouter from "./router";
 
 const App: React.FC = () => {
   return (
     <>
       <Header />
-      <div className='container'>
+      <div className="container">
         <Sidebar />
-        <main className='main'>
-        <Routes>
-          <Route path="/" element={<UserList />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/profile" element={<PrivateRoute element={<Profile />} />} />
-        </Routes>
+        <main className="main">
+          <MyRouter />
         </main>
       </div>
     </>
