@@ -29,18 +29,20 @@ const Settings: React.FC = () => {
   return (
     <div>
       <h2>Settings</h2>
-      <label htmlFor="font-size-select" className="settings-label">
-        Select Font Size:
-      </label>
-      <select
-        id="font-size-select"
-        value={fontSize}
-        onChange={handleFontSizeChange}
-      >
-        <option value="small">Small</option>
-        <option value="medium">Medium</option>
-        <option value="large">Large</option>
-      </select>
+      <div className="settings-item">
+        <label htmlFor="font-size-select" className="settings-label">
+          Select Font Size
+        </label>
+        <select
+          id="font-size-select"
+          value={fontSize}
+          onChange={handleFontSizeChange}
+        >
+          <option value="small">Small</option>
+          <option value="medium">Medium</option>
+          <option value="large">Large</option>
+        </select>
+      </div>
     </div>
   );
 };

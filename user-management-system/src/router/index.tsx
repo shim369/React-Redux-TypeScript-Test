@@ -9,7 +9,8 @@ import Settings from "../components/Layout/Settings";
 function MyRouter() {
   return (
     <Routes>
-      <Route path="/dashboard" element={<UserList />} />
+      <Route path="/" element={<UserList />} />
+      <Route path="/dashboard/:id" element={<UserList />} />
       <Route path="/settings" element={<Settings />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />

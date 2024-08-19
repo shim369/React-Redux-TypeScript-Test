@@ -32,7 +32,7 @@ h1 {
 }
 
 h2 {
-    margin-bottom: 1rem;
+    margin-bottom: 3rem;
 }
 
 input {
@@ -44,7 +44,7 @@ input {
 
 button {
     padding: 1rem;
-    background: #0644ff;
+    background: #1d347a;
     color: #fff;
     border-radius: 4px;
     border: none;
@@ -57,4 +57,10 @@ button:hover {
 
 table {
     background: #fff;
+}
+
+select {
+    padding: 1rem;
+    border-radius: 4px;
+    border: none;
 }

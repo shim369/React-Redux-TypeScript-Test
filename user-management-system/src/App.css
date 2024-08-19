@@ -61,9 +61,21 @@
 
 .tbl th, .tbl td {
     border: 1px solid black;
-    padding: 8px;
+    padding: 1rem;
 }
 
 .settings-label {
     color: #fff;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px dotted #fff;
+}
+
+.button-td {
+    text-align: center;
 }
