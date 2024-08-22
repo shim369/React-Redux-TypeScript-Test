@@ -1,10 +1,17 @@
 export type User = {
-    id: string;
-    name: string;
-  };
-  
-  export type AuthState = {
-    isAuthenticated: boolean;
-    user: User | null;
-  };
-  
+  id: number;
+  username: string;
+  email: string;
+  password: string;
+  created_at: string;
+};
+
+export type UserState = {
+  profile: User | null;
+  users: User[];
+};
+
+export type AuthState = {
+  isAuthenticated: boolean;
+  user: User | null;
+};

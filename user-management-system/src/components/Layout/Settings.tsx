@@ -9,7 +9,6 @@ const Settings: React.FC = () => {
     const selectedSize = event.target.value;
     setFontSize(selectedSize);
 
-    // ドキュメントのルートに文字サイズを適用
     document.documentElement.style.fontSize = getFontSizeValue(selectedSize);
   };
 
