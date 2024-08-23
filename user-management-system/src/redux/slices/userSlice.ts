@@ -1,5 +1,11 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User, UserState } from '../types';
+import { User } from '../types';
+
+
+export interface UserState {
+  profile: User | null;
+  users: User[];
+};
 
 const initialState: UserState = {
   profile: null,
@@ -13,11 +19,14 @@ const userSlice = createSlice({
     setProfile: (state, action: PayloadAction<User>) => {
       state.profile = action.payload;
     },
+    clearProfile: (state) => {
+      state.profile = null;
+    },
     setUsers: (state, action: PayloadAction<User[]>) => {
       state.users = action.payload;
     },
   },
 });
 
-export const { setProfile, setUsers } = userSlice.actions;
+export const { setProfile, clearProfile, setUsers } = userSlice.actions;
 export default userSlice.reducer;

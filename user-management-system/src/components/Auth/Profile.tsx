@@ -8,7 +8,6 @@ import { useParams } from 'react-router-dom';
 
 const Profile: React.FC = () => {
   const { userId } = useParams<{ userId: string }>();
-  console.log('User ID from params:', userId);
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.user.profile as User | null);
 
@@ -17,44 +16,38 @@ const Profile: React.FC = () => {
   const [password, setPassword] = useState('');
 
   useEffect(() => {
-    console.log('User ID from params:', userId);
-
     if (userId) {
       const fetchProfile = async () => {
+        const token = localStorage.getItem('authToken');
         try {
-          const response = await axios.get(`http://localhost:3000/api/users/${userId}`);
+          const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
+            headers: { Authorization: `Bearer ${token}` },
+          });
           dispatch(setProfile(response.data));
         } catch (error) {
-          console.error('Failed to fetch profile:', error);
+          if (axios.isAxiosError(error)) {
+            console.error('Failed to fetch profile:', error.response?.data || error.message);
+          } else {
+            console.error('Unexpected error:', error);
+          }
         }
       };
       fetchProfile();
     }
   }, [dispatch, userId]);
-
-  useEffect(() => {
-    if (profile) {
-      setUsername(profile.username);
-      setEmail(profile.email);
-    }
-  }, [profile]);
-
+  
   const handleSave = async () => {
     try {
       if (userId) {
-        const updateData: Partial<User> = {
-          username,
-          email,
-        };
+        const updateData: Partial<User> = { username, email };
   
         if (password) {
           updateData.password = password;
         }
   
-        
         await axios.put(`http://localhost:3000/api/users/${userId}`, updateData);
-
-        if (profile && profile.id !== undefined) {
+  
+        if (profile && profile.id) {
           dispatch(setProfile({ ...profile, username, email }));
         } else {
           alert('Failed to update profile. Please try again.');
@@ -71,7 +64,13 @@ const Profile: React.FC = () => {
       alert('Failed to update profile. Please try again.');
     }
   };
-  
+
+  useEffect(() => {
+    if (profile) {
+      setUsername(profile.username);
+      setEmail(profile.email);
+    }
+  }, [profile]);
   
 
   if (!profile) {

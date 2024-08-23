@@ -1,5 +1,0 @@
-・以下のファイルを元にpostmanでapiテスト環境構築
-user management system.postman_collection.json
-
-・以下のファイルを元にtableを再作成
-update_sql.txt

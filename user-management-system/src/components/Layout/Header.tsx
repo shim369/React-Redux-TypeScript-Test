@@ -18,7 +18,7 @@ const Header: React.FC = () => {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate('/dashboard');
+    navigate('/login');
   };
 
   return (
@@ -45,11 +45,9 @@ const Header: React.FC = () => {
           </>
         )}
         {isAuthenticated && (
-          <Link to="/logout">
-            <IconButton aria-label="Logout" onClick={handleLogout}>
-              <LogoutIcon />
-            </IconButton>
-          </Link>
+          <IconButton aria-label="Logout" onClick={handleLogout}>
+            <LogoutIcon />
+          </IconButton>
         )}
       </nav>
     </header>

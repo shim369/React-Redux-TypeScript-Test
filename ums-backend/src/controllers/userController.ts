@@ -1,8 +1,11 @@
 import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { createUser, getUserByEmail, updateUser, getAllUsers, deleteUser as deleteUserFromModel, getUserById } from '../models/user';
+import jwt from 'jsonwebtoken';
+
 
 const SALT_ROUNDS = 10;
+const JWT_SECRET = process.env.JWT_SECRET || 'your-secret-key';
 
 export const register = async (req: Request, res: Response) => {
   try {
@@ -22,7 +25,14 @@ export const login = async (req: Request, res: Response) => {
     const user = await getUserByEmail(email);
 
     if (user && await bcrypt.compare(password, user.password)) {
-      res.json({ success: true, user: { id: user.id, name: user.username } });
+      // Generate a token
+      const token = jwt.sign({ id: user.id, name: user.username }, JWT_SECRET, { expiresIn: '1h' });
+
+      res.json({
+        success: true,
+        token, // Include the generated token
+        user: { id: user.id, name: user.username }
+      });
     } else {
       res.status(401).json({ success: false, message: 'Invalid credentials' });
     }
@@ -31,6 +41,7 @@ export const login = async (req: Request, res: Response) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
 
 export const updateProfile = async (req: Request, res: Response) => {
   try {

@@ -14,19 +14,26 @@ const Login: React.FC = () => {
   const handleLogin = async () => {
     try {
       const response = await axios.post('http://localhost:3000/api/users/login', { email, password });
+      const { token, user } = response.data;
       
       if (response.data.success) {
-        dispatch(login(response.data.user));
+        localStorage.setItem('authToken', token);
+        dispatch(login(user));
         alert('Login successful');
         navigate('/dashboard');
       } else {
         setError(response.data.message || 'Login failed');
       }
     } catch (error) {
+      if (axios.isAxiosError(error)) {
+        setError('An error occurred during login. Please check your credentials and try again.');
+      } else {
+        setError('Unexpected error occurred. Please try again.');
+      }
       console.error('Login failed', error);
-      setError('An error occurred during login. Please try again.');
     }
   };
+  
 
   return (
     <div>
