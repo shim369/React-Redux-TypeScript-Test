@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/slices/authSlice';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
-const Login: React.FC = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [email, setEmail] = useState('');

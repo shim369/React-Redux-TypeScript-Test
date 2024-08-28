@@ -6,7 +6,7 @@ import UserList from "../components/Layout/UserList";
 import Settings from "../components/Layout/Settings";
 import Dashboard from "../components/Layout/Dashboard";
 
-function MyRouter() {
+const MyRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<UserList />} />

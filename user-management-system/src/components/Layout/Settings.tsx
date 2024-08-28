@@ -1,15 +1,16 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { SingleValue } from "react-select";
+import SelectCompo from "./SelectCompo";
 
-const Settings: React.FC = () => {
+const Settings = () => {
   const [fontSize, setFontSize] = useState("medium");
 
-  const handleFontSizeChange = (
-    event: React.ChangeEvent<HTMLSelectElement>
-  ) => {
-    const selectedSize = event.target.value;
-    setFontSize(selectedSize);
-
-    document.documentElement.style.fontSize = getFontSizeValue(selectedSize);
+  const handleFontSizeChange = (selectedOption: SingleValue<{ value: string; label: string }>) => {
+    if (selectedOption) {
+      const selectedSize = selectedOption.value;
+      setFontSize(selectedSize);
+      document.documentElement.style.fontSize = getFontSizeValue(selectedSize);
+    }
   };
 
   const getFontSizeValue = (size: string) => {
@@ -29,18 +30,14 @@ const Settings: React.FC = () => {
     <div>
       <h2>Settings</h2>
       <div className="settings-item">
-        <label htmlFor="font-size-select" className="settings-label">
-          Select Font Size
-        </label>
-        <select
-          id="font-size-select"
-          value={fontSize}
-          onChange={handleFontSizeChange}
-        >
-          <option value="small">Small</option>
-          <option value="medium">Medium</option>
-          <option value="large">Large</option>
-        </select>
+        <div className="settings-label">
+          <h3>
+            Select Font Size
+          </h3>
+          <p>Current Font Size: {fontSize}
+          </p>
+        </div>
+        <SelectCompo onChange={handleFontSizeChange} />
       </div>
     </div>
   );

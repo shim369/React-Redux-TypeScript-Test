@@ -1,14 +1,13 @@
-import React from "react";
 import Header from "./components/Layout/Header";
-import Sidebar from "./components/Layout/Sidebar";
 import MyRouter from "./router";
+import SwiperCompo from "./components/Layout/SwiperCompo";
 
-const App: React.FC = () => {
+const App = () => {
   return (
     <>
       <Header />
+      <SwiperCompo />
       <div className="container">
-          <Sidebar />
         <main className="main">
           <MyRouter />
         </main>

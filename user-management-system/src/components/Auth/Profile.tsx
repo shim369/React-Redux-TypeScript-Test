@@ -1,12 +1,12 @@
 import { User } from '../../redux/types';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProfile } from '../../redux/slices/userSlice';
 import { RootState } from '../../redux/store';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-const Profile: React.FC = () => {
+const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.user.profile as User | null);

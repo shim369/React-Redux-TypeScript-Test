@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { setUsers } from "../../redux/slices/userSlice";
 import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const UserList: React.FC = () => {
+const UserList = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const users = useSelector((state: RootState) => state.user.users);

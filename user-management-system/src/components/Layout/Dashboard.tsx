@@ -1,7 +1,6 @@
-import React from "react";
 import UserList from "./UserList";
 
-const Dashboard: React.FC = () => {
+const Dashboard = () => {
 
   return (
     <div>
