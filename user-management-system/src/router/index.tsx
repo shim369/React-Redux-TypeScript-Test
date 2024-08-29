@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
-import Profile from "../components/Auth/Profile";
+import Profile from "../components/Layout/Profile";
 import UserList from "../components/Layout/UserList";
 import Settings from "../components/Layout/Settings";
 import Dashboard from "../components/Layout/Dashboard";

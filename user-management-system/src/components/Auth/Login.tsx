@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/slices/authSlice';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { loginUser } from '../../api/authApi';
+import axios from 'axios';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -13,16 +14,16 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post('http://localhost:3000/api/users/login', { email, password });
-      const { token, user } = response.data;
+      const responseData = await loginUser(email, password);
+      const { token, user, success, message } = responseData;
       
-      if (response.data.success) {
+      if (success) {
         localStorage.setItem('authToken', token);
         dispatch(login(user));
         alert('Login successful');
         navigate('/dashboard');
       } else {
-        setError(response.data.message || 'Login failed');
+        setError(message || 'Login failed');
       }
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -30,10 +31,8 @@ const Login = () => {
       } else {
         setError('Unexpected error occurred. Please try again.');
       }
-      console.error('Login failed', error);
     }
   };
-  
 
   return (
     <div>
@@ -55,7 +54,7 @@ const Login = () => {
         onChange={(e) => setPassword(e.target.value)} 
       />
       <button onClick={handleLogin}>Login</button>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <p style={{ color: 'white', marginTop: '20px' }}>{error}</p>}
     </div>
   );
 };

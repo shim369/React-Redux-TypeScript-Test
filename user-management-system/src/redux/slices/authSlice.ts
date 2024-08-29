@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../types';
+import { User } from '../../types/user';
 
 const token = localStorage.getItem('authToken');
 const user = token ? JSON.parse(localStorage.getItem('user') || 'null') : null;

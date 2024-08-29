@@ -1,10 +1,10 @@
-import { User } from '../../redux/types';
+import { User } from '../../types/user';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProfile } from '../../redux/slices/userSlice';
 import { RootState } from '../../redux/store';
-import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { fetchUserProfile, updateUserProfile } from '../../api/userApi';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
@@ -20,16 +20,10 @@ const Profile = () => {
       const fetchProfile = async () => {
         const token = localStorage.getItem('authToken');
         try {
-          const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-          dispatch(setProfile(response.data));
+          const userProfile = await fetchUserProfile(userId, token);
+          dispatch(setProfile(userProfile));
         } catch (error) {
-          if (axios.isAxiosError(error)) {
-            console.error('Failed to fetch profile:', error.response?.data || error.message);
-          } else {
-            console.error('Unexpected error:', error);
-          }
+          console.error('Failed to fetch profile:', error);
         }
       };
       fetchProfile();
@@ -45,7 +39,7 @@ const Profile = () => {
           updateData.password = password;
         }
   
-        await axios.put(`http://localhost:3000/api/users/${userId}`, updateData);
+        await updateUserProfile(userId, updateData);
   
         if (profile && profile.id) {
           dispatch(setProfile({ ...profile, username, email }));
@@ -56,11 +50,7 @@ const Profile = () => {
         alert('Profile updated successfully');
       }
     } catch (error) {
-      if (axios.isAxiosError(error)) {
-        console.error('Profile update failed:', error.response?.data || error.message);
-      } else {
-        console.error('Unexpected error:', error);
-      }
+      console.error('Failed to update profile:', error);
       alert('Failed to update profile. Please try again.');
     }
   };
@@ -72,7 +62,6 @@ const Profile = () => {
     }
   }, [profile]);
   
-
   if (!profile) {
     return <div>Loading...</div>;
   }
