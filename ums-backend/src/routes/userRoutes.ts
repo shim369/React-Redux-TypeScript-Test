@@ -5,9 +5,9 @@ const router = express.Router();
 
 router.post('/register', register);
 router.post('/login', login);
-router.put('/:id', updateProfile);
 router.get('/', getUsers);
 router.get('/:id', getUserByIdController);
+router.put('/:id', updateProfile);
 router.delete('/:id', deleteProfile);
 
 export default router;

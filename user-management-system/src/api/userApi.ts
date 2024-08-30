@@ -1,9 +1,15 @@
 import axios, { AxiosResponse } from "axios";
 import { User } from "../types/user";
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
+if (!apiBaseUrl) {
+  throw new Error("API base URL is not defined in environment variables.");
+}
+
 export const fetchUsers = async (): Promise<User[]> => {
   try {
-    const response = await axios.get("http://localhost:3000/api/users");
+    const response = await axios.get(apiBaseUrl);
     return response.data;
   } catch (error) {
     console.error("Error fetching users:", error);
@@ -14,7 +20,7 @@ export const fetchUsers = async (): Promise<User[]> => {
 export const fetchUserById = async (userId: number): Promise<User> => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/users/${userId}`
+      `${apiBaseUrl}/${userId}`
     );
     return response.data;
   } catch (error) {
@@ -26,7 +32,7 @@ export const fetchUserById = async (userId: number): Promise<User> => {
 export const deleteUserById = async (id: number): Promise<AxiosResponse> => {
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/users/${id}`
+      `${apiBaseUrl}/${id}`
     );
     return response;
   } catch (error) {

@@ -1,6 +1,8 @@
 import axios from "axios";
 import { User } from "../types/user";
 
+const apiBaseUrl = process.env.REACT_APP_API_BASE_URL;
+
 export const loginUser = async (
   email: string,
   password: string
@@ -11,7 +13,7 @@ export const loginUser = async (
   message?: string;
 }> => {
   try {
-    const response = await axios.post("http://localhost:3000/api/users/login", {
+    const response = await axios.post(`${apiBaseUrl}/login`, {
       email,
       password,
     });
@@ -29,7 +31,7 @@ export const registerUser = async (
 ): Promise<{ user: User; success: boolean; message?: string }> => {
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/users/register",
+      `${apiBaseUrl}/register`,
       { username, email, password }
     );
     return response.data;

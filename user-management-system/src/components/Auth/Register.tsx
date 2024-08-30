@@ -7,14 +7,21 @@ const Register = () => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleRegister = async () => {
+    if (!username || !email || !password) {
+      setErrorMessage('Please complete all fields.');
+      return;
+    }
+
     try {
       await registerUser(username, email, password);
       alert('Registration successful');
       navigate('/');
     } catch (error) {
       console.error('Registration failed', error);
+      setErrorMessage('Registration failed. Please try again.');
     }
   };
 
@@ -46,6 +53,7 @@ const Register = () => {
         onChange={(e) => setPassword(e.target.value)} 
       />
       <button onClick={handleRegister}>Register</button>
+      {errorMessage && <p style={{ color: 'white', marginTop: '10px' }}>{errorMessage}</p>}
     </div>
   );
 };
