@@ -47,7 +47,7 @@ export const fetchUserProfile = async (
 ): Promise<User> => {
   try {
     const response = await axios.get(
-      `http://localhost:3000/api/users/${userId}`,
+      `${apiBaseUrl}/${userId}`,
       {
         headers: { Authorization: `Bearer ${token}` },
       }
@@ -65,7 +65,7 @@ export const updateUserProfile = async (
 ): Promise<User> => {
   try {
     const response = await axios.put(
-      `http://localhost:3000/api/users/${userId}`,
+      `${apiBaseUrl}/${userId}`,
       updateData
     );
     return response.data;

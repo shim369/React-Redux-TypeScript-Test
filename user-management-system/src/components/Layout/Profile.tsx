@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setProfile } from '../../redux/slices/userSlice';
 import { RootState } from '../../redux/store';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { fetchUserProfile, updateUserProfile } from '../../api/userApi';
 
 const Profile = () => {
   const { userId } = useParams<{ userId: string }>();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const profile = useSelector((state: RootState) => state.user.profile as User | null);
 
   const [username, setUsername] = useState('');
@@ -48,6 +49,7 @@ const Profile = () => {
         }
   
         alert('Profile updated successfully');
+        navigate('/');
       }
     } catch (error) {
       console.error('Failed to update profile:', error);
